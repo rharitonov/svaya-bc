@@ -8,17 +8,22 @@ codeunit 50000 CommonModule
     var
         myInt: Integer;
 
-    procedure CreatePileField(var TempPileField: Record PileField)
+    procedure CreatePileField(var TempPileFieldBuffer: Record PileFieldBuffer)
     var
         PileField: Record PileField;
+        I: Integer;
     begin
-        TempPileField.Reset();
-        if not TempPileField.FindSet() then
+        TempPileFieldBuffer.Reset();
+        TempPileFieldBuffer.SetCurrentKey(PileFieldPositionFrom);
+        if not TempPileFieldBuffer.FindSet() then
             exit;
-        repeat
-            PileField := TempPileField;
+        for I := TempPileFieldBuffer.PileFieldPositionFrom to TempPileFieldBuffer.PileFieldPositionTo do begin
+            PileField.Init();
+            PileField.ProjectCode := TempPileFieldBuffer.ProjectCode;
+            PileField.PileFieldPositionNo := I;
+            PileField.PileType := TempPileFieldBuffer.PileType;
             PileField.Insert(true);
-        until TempPileField.Next() = 0;
 
+        end;
     end;
 }

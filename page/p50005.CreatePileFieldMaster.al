@@ -1,11 +1,12 @@
-page 50004 CreatePileFieldMaster
+page 50005 CreatePileFieldMaster
 {
     CaptionML = ENU = 'Create Pile Field Master', RUS = 'Создание свайного поля';
     PageType = StandardDialog;
     UsageCategory = Administration;
-    SourceTable = PileField;
+    SourceTable = PileFieldBuffer;
     SourceTableTemporary = true;
     PopulateAllFields = true;
+    DelayedInsert = true;
 
     layout
     {
@@ -25,18 +26,18 @@ page 50004 CreatePileFieldMaster
                     ApplicationArea = All;
 
                 }
-                field(PileNumberFrom; Rec.PileNumberFrom)
+                field(PileNumberFrom; Rec.PileFieldPositionFrom)
                 {
                     ApplicationArea = All;
 
                 }
-                field(PileNumberTo; Rec.PileNumberTo)
+                field(PileNumberTo; Rec.PileFieldPositionTo)
                 {
                     ApplicationArea = All;
 
                 }
 
-                field(PileQuantity; Rec.PileNumberTo - Rec.PileNumberFrom + 1)
+                field(PileQuantity; Rec.PileFieldPositionTo - Rec.PileFieldPositionFrom + 1)
                 {
                     ApplicationArea = All;
                     CaptionML = ENU = 'Pile Quantity', RUS = 'Количество свай';
@@ -54,6 +55,11 @@ page 50004 CreatePileFieldMaster
     begin
         if CloseAction in [CloseAction::LookupOK, CloseAction::OK] then
             CommonModule.CreatePileField(Rec);
+    end;
+
+    trigger OnNewRecord(BelowxRec: Boolean)
+    begin
+        Rec.LineNo += 1;
     end;
 
 }

@@ -1,33 +1,31 @@
-page 50003 SvItems
+page 50004 SvItemCard
 {
-    PageType = List;
+    PageType = Card;
     ApplicationArea = All;
-    UsageCategory = Lists;
+    UsageCategory = Administration;
     SourceTable = SvItem;
-    CaptionML = ENU = 'SKU', RUS = 'Сваи';
-    CardPageId = SvItemCard;
+    CaptionML = ENU = 'Sv Item Card', RUS = 'Карточка сваи';
+
 
     layout
     {
         area(Content)
         {
-            repeater(GroupName)
+            group(General)
             {
-                field(No; Rec."No.")
+                CaptionML = ENU = 'General', RUS = 'Общее';
+                field(Name; Rec."No.")
                 {
                     ApplicationArea = All;
 
                 }
+
                 field(Description; Rec.Description)
                 {
-                    ApplicationArea = All;
+                    ApplicationArea = all;
 
                 }
             }
-        }
-        area(Factboxes)
-        {
-
         }
     }
 
@@ -39,11 +37,14 @@ page 50003 SvItems
             {
                 ApplicationArea = All;
 
-                trigger OnAction();
+                trigger OnAction()
                 begin
 
                 end;
             }
         }
     }
+
+    var
+        myInt: Integer;
 }

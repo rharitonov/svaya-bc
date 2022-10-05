@@ -5,6 +5,7 @@ page 50001 Projects
     UsageCategory = Lists;
     SourceTable = Project;
     CaptionML = ENU = 'Projects', RUS = 'Проекты';
+    CardPageId = Project;
 
     layout
     {
