@@ -37,6 +37,17 @@ page 50002 Project
                 RunPageLink = ProjectCode = field(ProjectCode);
             }
         }
+
+        area(Navigation)
+        {
+            action(PileLedgerEntries)
+            {
+                ApplicationArea = All;
+                CaptionML = ENU = 'Pile Ledger Entries', RUS = 'Книга операций проекта';
+                RunObject = page PileLedgerEntries;
+                RunPageLink = ProjectCode = field(ProjectCode);
+            }
+        }
     }
 
 }
