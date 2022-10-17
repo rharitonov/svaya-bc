@@ -17,6 +17,7 @@ page 50005 CreatePileFieldMaster
                 field(ProjectCode; Rec.ProjectCode)
                 {
                     ApplicationArea = All;
+                    Editable = false;
                 }
             }
             repeater(lines)
@@ -29,15 +30,22 @@ page 50005 CreatePileFieldMaster
                 field(PileNumberFrom; Rec.PileFieldPositionFrom)
                 {
                     ApplicationArea = All;
+                    trigger OnValidate()
+                    begin
+                        LinePileQuantity := GetLinePileQuantity();
+                    end;
 
                 }
                 field(PileNumberTo; Rec.PileFieldPositionTo)
                 {
                     ApplicationArea = All;
-
+                    trigger OnValidate()
+                    begin
+                        LinePileQuantity := GetLinePileQuantity();
+                    end;
                 }
 
-                field(PileQuantity; Rec.PileFieldPositionTo - Rec.PileFieldPositionFrom + 1)
+                field(LinePileQuantity; LinePileQuantity)
                 {
                     ApplicationArea = All;
                     CaptionML = ENU = 'Pile Quantity', RUS = 'Количество свай';
@@ -60,6 +68,26 @@ page 50005 CreatePileFieldMaster
     trigger OnNewRecord(BelowxRec: Boolean)
     begin
         Rec.LineNo += 1;
+    end;
+
+    trigger OnAfterGetRecord()
+    begin
+        LinePileQuantity := GetLinePileQuantity();
+    end;
+
+    var
+        LinePileQuantity: Integer;
+
+    local procedure GetLinePileQuantity() Result: Integer;
+    var
+        myInt: Integer;
+    begin
+        if (Rec.PileFieldPositionFrom = Rec.PileFieldPositionTo) or
+            (Rec.PileFieldPositionTo > Rec.PileFieldPositionFrom)
+        then
+            Result := 0
+        else
+            Result := Rec.PileFieldPositionTo - Rec.PileFieldPositionFrom + 1;
     end;
 
 }
