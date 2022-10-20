@@ -17,13 +17,15 @@ codeunit 50000 CommonModule
         TempPileFieldBuffer.SetCurrentKey(PileFieldPositionFrom);
         if not TempPileFieldBuffer.FindSet() then
             exit;
-        for I := TempPileFieldBuffer.PileFieldPositionFrom to TempPileFieldBuffer.PileFieldPositionTo do begin
-            PileField.Init();
-            PileField.ProjectCode := TempPileFieldBuffer.ProjectCode;
-            PileField.PileFieldPositionNo := I;
-            PileField.PileType := TempPileFieldBuffer.PileType;
-            PileField.Insert(true);
+        repeat
+            for I := TempPileFieldBuffer.PileFieldPositionFrom to TempPileFieldBuffer.PileFieldPositionTo do begin
+                PileField.Init();
+                PileField.ProjectCode := TempPileFieldBuffer.ProjectCode;
+                PileField.PileFieldPositionNo := I;
+                PileField.PileType := TempPileFieldBuffer.PileType;
+                PileField.Insert(true);
 
-        end;
+            end;
+        until TempPileFieldBuffer.Next() = 0
     end;
 }

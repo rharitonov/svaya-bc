@@ -82,9 +82,7 @@ page 50005 CreatePileFieldMaster
     var
         myInt: Integer;
     begin
-        if (Rec.PileFieldPositionFrom = Rec.PileFieldPositionTo) or
-            (Rec.PileFieldPositionTo > Rec.PileFieldPositionFrom)
-        then
+        if (Rec.PileFieldPositionFrom >= Rec.PileFieldPositionTo) then
             Result := 0
         else
             Result := Rec.PileFieldPositionTo - Rec.PileFieldPositionFrom + 1;
