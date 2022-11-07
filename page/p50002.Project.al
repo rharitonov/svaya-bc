@@ -47,7 +47,16 @@ page 50002 Project
                 RunObject = page PileLedgerEntries;
                 RunPageLink = ProjectCode = field(ProjectCode);
             }
+
+            action(ProjectArea)
+            {
+                ApplicationArea = All;
+                CaptionML = ENU = 'Project Area', RUS = 'Структура проекта';
+                RunObject = page ProjectArea;
+                RunPageLink = ProjectCode = field(ProjectCode);
+            }
         }
+
     }
 
 }

@@ -18,7 +18,7 @@ table 50002 SvItem
             CaptionML = ENU = 'Description', RUS = 'Описание';
         }
 
-        field(20; Э; Text[512])
+        field(20; "Description 2"; Text[512])
         {
             DataClassification = ToBeClassified;
             CaptionML = ENU = 'Description 2', RUS = 'Описание 2';
