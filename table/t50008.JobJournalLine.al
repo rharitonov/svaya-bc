@@ -30,7 +30,7 @@ table 50008 JobJournalLine
         {
             DataClassification = ToBeClassified;
             CaptionML = ENU = 'Project Structure Code', RUS = 'Код структуры проекта';
-            TableRelation = ProjectArea.AreaCode;
+            TableRelation = ProjectStructure.StructureCode where(ProjectCode = field(ProjectCode));
         }
 
         field(20; PileQACertificateNo; Code[20])

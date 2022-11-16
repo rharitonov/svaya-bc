@@ -13,7 +13,7 @@ table 50009 JobLedgerEntry
 
         }
 
-        field(2; EntryType; Enum PileEntryType)
+        field(2; EntryType; Enum JobEntryType)
         {
 
             DataClassification = ToBeClassified;
@@ -31,7 +31,7 @@ table 50009 JobLedgerEntry
         {
             DataClassification = ToBeClassified;
             CaptionML = ENU = 'Project Structure Code', RUS = 'Код структуры проекта';
-            TableRelation = ProjectArea.AreaCode;
+            TableRelation = ProjectStructure.StructureCode where(ProjectCode = field(ProjectCode));
         }
 
         field(20; PileQACertificateNo; Code[20])

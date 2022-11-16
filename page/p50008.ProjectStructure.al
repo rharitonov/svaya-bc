@@ -1,9 +1,9 @@
-page 50008 ProjectArea
+page 50008 ProjectStructure
 {
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = ProjectArea;
+    SourceTable = ProjectStructure;
     CaptionML = ENU = 'Project Area', RUS = 'Структура проекта';
 
     layout
@@ -12,7 +12,7 @@ page 50008 ProjectArea
         {
             repeater(GroupName)
             {
-                field(AreaCode; Rec.AreaCode)
+                field(AreaCode; Rec.StructureCode)
                 {
                     ApplicationArea = All;
 

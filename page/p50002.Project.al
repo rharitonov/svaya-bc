@@ -22,6 +22,14 @@ page 50002 Project
                     ApplicationArea = All;
                 }
             }
+
+            group(Jobs)
+            {
+                part(DashBoard; ProjectDashboard)
+                {
+                    SubPageLink = ProjectCode = field(ProjectCode);
+                }
+            }
         }
     }
 
@@ -52,7 +60,7 @@ page 50002 Project
             {
                 ApplicationArea = All;
                 CaptionML = ENU = 'Project Area', RUS = 'Структура проекта';
-                RunObject = page ProjectArea;
+                RunObject = page ProjectStructure;
                 RunPageLink = ProjectCode = field(ProjectCode);
             }
         }

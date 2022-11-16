@@ -4,7 +4,7 @@ page 50009 PileJournalLine
 
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = PileJournal;
+    SourceTable = JobJournalLine;
     AutoSplitKey = true;
     DelayedInsert = true;
     PopulateAllFields = true;
@@ -85,9 +85,9 @@ page 50009 PileJournalLine
             }
         }
     }
-    
+
     var
-    
+
 }
 
 

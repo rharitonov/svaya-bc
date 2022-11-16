@@ -11,6 +11,13 @@ table 50003 PileField
             CaptionML = ENU = 'Project Code', RUS = 'Код проекта';
             TableRelation = Project;
         }
+        field(2; ProjectStructureCode; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            CaptionML = ENU = 'Project Structure Code', RUS = 'Код структуры проекта';
+            TableRelation = ProjectStructure.StructureCode where(ProjectCode = field(ProjectCode));
+        }
+
         field(3; PileFieldPositionNo; Integer)
         {
             DataClassification = ToBeClassified;

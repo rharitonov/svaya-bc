@@ -1,7 +1,7 @@
-table 50007 ProjectArea
+table 50007 ProjectStructure
 {
     DataClassification = ToBeClassified;
-    CaptionML = ENU = 'Project Area', RUS = 'Структура';
+    CaptionML = ENU = 'Project Structure', RUS = 'Структура проекта';
 
     fields
     {
@@ -12,10 +12,10 @@ table 50007 ProjectArea
             TableRelation = Project;
         }
 
-        field(10; AreaCode; Code[20])
+        field(10; StructureCode; Code[20])
         {
             DataClassification = ToBeClassified;
-            CaptionML = ENU = 'Area Code', RUS = 'Код структуры';
+            CaptionML = ENU = 'Structure Code', RUS = 'Код структуры';
         }
 
         field(20; Description; Text[250])
@@ -27,7 +27,7 @@ table 50007 ProjectArea
 
     keys
     {
-        key(Key1; ProjectCode, AreaCode)
+        key(Key1; ProjectCode, StructureCode)
         {
             Clustered = true;
         }

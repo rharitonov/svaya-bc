@@ -3,7 +3,7 @@ page 50006 PileLedgerEntries
     PageType = List;
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = PileLedgerEntry;
+    SourceTable = SvItemLedgerEntry;
     CaptionML = ENU = 'Pile Ledger Entries', RUS = 'Книга операций свай';
 
     layout
