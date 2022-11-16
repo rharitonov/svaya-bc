@@ -1,4 +1,4 @@
-table 50005 PileLedgerEntry
+table 50005 SvItemLedgerEntry
 {
     DataClassification = ToBeClassified;
     CaptionML = ENU = 'Pile Ledger Entry', RUS = 'Книга операций свай';
