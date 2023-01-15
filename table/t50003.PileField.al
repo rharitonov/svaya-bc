@@ -34,7 +34,7 @@ table 50003 PileField
 
     keys
     {
-        key(Key1; ProjectCode, PileFieldPositionNo)
+        key(Key1; ProjectCode, ProjectStructureCode, PileFieldPositionNo)
         {
             Clustered = true;
         }

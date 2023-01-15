@@ -21,10 +21,10 @@ codeunit 50000 CommonModule
             for I := TempPileFieldBuffer.PileFieldPositionFrom to TempPileFieldBuffer.PileFieldPositionTo do begin
                 PileField.Init();
                 PileField.ProjectCode := TempPileFieldBuffer.ProjectCode;
+                PileField.ProjectStructureCode := TempPileFieldBuffer.ProjectStructureCode;
                 PileField.PileFieldPositionNo := I;
                 PileField.PileType := TempPileFieldBuffer.PileType;
                 PileField.Insert(true);
-
             end;
         until TempPileFieldBuffer.Next() = 0
     end;

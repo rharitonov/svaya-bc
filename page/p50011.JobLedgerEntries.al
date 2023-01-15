@@ -1,14 +1,11 @@
-page 50009 PileJournalLine
+page 50011 JobLedgerEntries
 {
     PageType = List;
-
     ApplicationArea = All;
     UsageCategory = Lists;
-    SourceTable = JobJournalLine;
-    AutoSplitKey = true;
-    DelayedInsert = true;
-    PopulateAllFields = true;
-    CaptionML = ENU = 'Pile Journal Line', RUS = 'Строка журнала работ';
+    SourceTable = JobLedgerEntry;
+    CaptionML = ENU = 'Job Ledger Entries', RUS = 'Учтенные рабты';
+    Editable = false;
 
     layout
     {
@@ -16,57 +13,72 @@ page 50009 PileJournalLine
         {
             repeater(GroupName)
             {
-                field(Name; Rec.EntryType)
+                field(EntryNo; Rec.EntryNo)
                 {
                     ApplicationArea = All;
+
+                }
+
+                field(EntryType; Rec.EntryType)
+                {
+                    ApplicationArea = All;
+
                 }
 
                 field(ProjectCode; Rec.ProjectCode)
                 {
                     ApplicationArea = All;
+
                 }
 
-                field(ProjectStructCode; Rec.ProjectStructureCode)
+                field(ProjectStructureCode; Rec.ProjectStructureCode)
                 {
                     ApplicationArea = All;
+
                 }
 
-                field(ManufacturerNo; Rec.ManufacturerNo)
+                field(PileQACertificateNo; Rec.PileQACertificateNo)
                 {
                     ApplicationArea = All;
+
                 }
 
-                field(PileQACertNo; Rec.PileQACertificateNo)
+                field(PileQACertificateIssueDate; Rec.PileQACertificateIssueDate)
                 {
                     ApplicationArea = All;
-                }
 
-                field(PileQACertIssueDate; Rec.PileQACertificateIssueDate)
-                {
-                    ApplicationArea = All;
                 }
 
                 field(PostingDate; Rec.PostingDate)
                 {
                     ApplicationArea = All;
+
                 }
+
 
                 field(SvItemNo; Rec.SvItemNo)
                 {
                     ApplicationArea = All;
+
                 }
 
-                field(Qunatity; Rec.Quantity)
+                field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
+
                 }
 
                 field(PileFieldPositionNo; Rec.PileFieldPositionNo)
                 {
                     ApplicationArea = All;
+
                 }
 
             }
+        }
+        area(Factboxes)
+        {
+
         }
     }
 
@@ -74,7 +86,7 @@ page 50009 PileJournalLine
     {
         area(Processing)
         {
-            action(Post)
+            action(ActionName)
             {
                 ApplicationArea = All;
 
@@ -85,10 +97,4 @@ page 50009 PileJournalLine
             }
         }
     }
-
-    var
-
 }
-
-
-//--

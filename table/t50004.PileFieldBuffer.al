@@ -11,6 +11,14 @@ table 50004 PileFieldBuffer
 
         }
 
+        field(2; ProjectStructureCode; Code[20])
+        {
+            DataClassification = ToBeClassified;
+            CaptionML = ENU = 'Project Structure Code', RUS = 'Код структуры проекта';
+            TableRelation = ProjectStructure.StructureCode where(ProjectCode = field(ProjectCode));
+
+        }
+
         field(3; LineNo; Integer)
         {
             DataClassification = ToBeClassified;
@@ -44,7 +52,7 @@ table 50004 PileFieldBuffer
 
     keys
     {
-        key(Key1; ProjectCode, LineNo)
+        key(Key1; ProjectCode, ProjectStructureCode, LineNo)
         {
             Clustered = true;
         }

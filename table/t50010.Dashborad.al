@@ -78,9 +78,7 @@ table 50010 Dashboard
 
     trigger OnInsert()
     begin
-        Rec.Completed := Rec.GetJobCompleteQuantity();
-        Rec.Total := Rec.GetTotalQuantity();
-        Rec.Uncompleted := Rec.Total - Rec.Completed;
+        UpdateQuantities();
     end;
 
     trigger OnModify()
@@ -117,6 +115,13 @@ table 50010 Dashboard
         if Rec.PorjectStructureCode <> '' then
             PileField.SetRange(ProjectStructureCode, Rec.PorjectStructureCode);
         Result := PileField.Count();
+    end;
+
+    procedure UpdateQuantities()
+    begin
+        Rec.Completed := Rec.GetJobCompleteQuantity();
+        Rec.Total := Rec.GetTotalQuantity();
+        Rec.Uncompleted := Rec.Total - Rec.Completed;
     end;
 
 }

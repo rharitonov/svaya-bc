@@ -19,25 +19,45 @@ codeunit 50001 JobJournalLinePost
         if not JobJournalLine.FindSet() then
             exit;
         repeat
-            if JobJournalLine.PileFieldPositionFrom <> 0 then
-                for PileNo := JobJournalLine.PileFieldPositionFrom to JobJournalLine.PileFieldPositionTo do begin
-                    JobJournalLine.PileFieldPositionNo := PileNo;
-                    CreatejobLedgerEntry(JobJournalLine);
-                end
-            else
-                if JobJournalLine.PileFieldPositionNo > 0 then
-                    CreatejobLedgerEntry(JobJournalLine);
+            if JobJournalLine.EntryType = JobJournalLine.EntryType::QACertificatePosting then begin
+                if JobJournalLine.Quantity > 0 then
+                    for PileNo := 1 to JobJournalLine.Quantity do begin
+                        JobJournalLine.Quantity := 1;
+                        CreatejobLedgerEntry(JobJournalLine);
+                    end
+            end else begin
+                if JobJournalLine.PileFieldPositionFrom <> 0 then
+                    for PileNo := JobJournalLine.PileFieldPositionFrom to JobJournalLine.PileFieldPositionTo do begin
+                        JobJournalLine.PileFieldPositionNo := PileNo;
+                        JobJournalLine.Quantity := 1;
+                        CreatejobLedgerEntry(JobJournalLine);
+                    end
+                else
+                    if JobJournalLine.PileFieldPositionNo > 0 then begin
+                        JobJournalLine.Quantity := 1;
+                        CreatejobLedgerEntry(JobJournalLine);
+                    end;
+
+            end;
         until JobJournalLine.Next() = 0;
+        JobJournalLine.Reset();
+        JobJournalLine.DeleteAll();
     end;
 
     local procedure CreateJobLedgerEntry(var JobJournalLine: Record JobJournalLine)
     var
         JobLedgerEntry: Record JobLedgerEntry;
+        NewEntryNo: Integer;
     begin
+        JobLedgerEntry.Reset();
+        if JobLedgerEntry.FindLast() then
+            NewEntryNo := JobLedgerEntry.EntryNo + 1
+        else
+            NewEntryNo := 1;
         JobLedgerEntry.Init();
-        JobLedgerEntry.FindLast();
-        JobLedgerEntry.EntryNo += 1;
-        JobLedgerEntry.TransferFields(JobJournalLine);
+
+        JobLedgerEntry.TransferFields(JobJournalLine, false);
+        JobLedgerEntry.EntryNo := NewEntryNo;
         JobLedgerEntry.Insert(true);
     end;
 

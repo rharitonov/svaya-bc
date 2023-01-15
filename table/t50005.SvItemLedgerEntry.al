@@ -12,7 +12,7 @@ table 50005 SvItemLedgerEntry
             CaptionML = ENU = 'Entry No.', RUS = 'Номер операции';
         }
 
-        field(10; EntryType; Enum PileEntryType)
+        field(10; EntryType; Enum SvItemEntryType)
         {
             DataClassification = ToBeClassified;
             CaptionML = ENU = 'Pile Entry Type', RUS = 'Тип операции';

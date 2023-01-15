@@ -9,7 +9,6 @@ table 50009 JobLedgerEntry
         {
             DataClassification = ToBeClassified;
             CaptionML = ENU = 'Entry No.', RUS = 'Номер операции';
-            AutoIncrement = true;
 
         }
 

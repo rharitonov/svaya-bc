@@ -12,7 +12,7 @@ table 50008 JobJournalLine
 
         }
 
-        field(2; EntryType; Enum PileEntryType)
+        field(2; EntryType; Enum JobEntryType)
         {
 
             DataClassification = ToBeClassified;

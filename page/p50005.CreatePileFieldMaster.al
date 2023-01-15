@@ -22,11 +22,17 @@ page 50005 CreatePileFieldMaster
             }
             repeater(lines)
             {
+                field(ProjectStructureCode; REc.ProjectStructureCode)
+                {
+                    ApplicationArea = All;
+                }
+
                 field(PileType; Rec.PileType)
                 {
                     ApplicationArea = All;
 
                 }
+
                 field(PileNumberFrom; Rec.PileFieldPositionFrom)
                 {
                     ApplicationArea = All;
