@@ -40,7 +40,7 @@ table 50009 JobLedgerEntry
 
         }
 
-        field(21; PileQACertificateIssueDate; Blob)
+        field(21; PileQACertificateIssueDate; Date)
         {
             DataClassification = ToBeClassified;
             CaptionML = ENU = 'Pile QA Cert. Issue Date', RUS = 'Дата паспорта';

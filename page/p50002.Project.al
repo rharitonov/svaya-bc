@@ -18,6 +18,7 @@ page 50002 Project
                     ApplicationArea = All;
 
                 }
+
                 field(Address; Rec.Address)
                 {
                     ApplicationArea = All;
@@ -34,6 +35,19 @@ page 50002 Project
                     SubPageLink = ProjectCode = field(ProjectCode);
                 }
             }
+
+            group(Responsobilities)
+            {
+                CaptionML = ENU = 'Responsobilities', RUS = 'Отвественные лица и организации';
+                field(ProjectEngineer; Rec.ProjectEngineer)
+                {
+                    ApplicationArea = All;
+                }
+                field(ProjectProducer; Rec.ProjectProducer)
+                {
+                    ApplicationArea = All;
+                }
+            }
         }
     }
 
@@ -41,6 +55,7 @@ page 50002 Project
     {
         area(Processing)
         {
+            /*
             action(CreatePileField)
             {
                 ApplicationArea = All;
@@ -48,14 +63,23 @@ page 50002 Project
                 RunObject = page CreatePileFieldMaster;
                 RunPageLink = ProjectCode = field(ProjectCode);
             }
-
+            */
             action(AddJob)
             {
                 ApplicationArea = All;
                 CaptionML = ENU = 'Add Job', RUS = 'Учесть выполнение работ';
                 RunObject = Page JobJournalLine;
                 RunPageLink = ProjectCode = field(ProjectCode);
+            }
+        }
 
+        area(Reporting)
+        {
+            action(QACertJnlPrint)
+            {
+                ApplicationArea = All;
+                CaptionML = ENU = 'Print QA Certificate Journal', RUS = 'Печать журнала входящего контроля';
+                RunObject = report QACertificateJournal;
             }
         }
 

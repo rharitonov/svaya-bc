@@ -1,14 +1,14 @@
-table 50008 JobJournalLine
+table 50011 JobJournalLineArchive
 {
     DataClassification = ToBeClassified;
-    CaptionML = ENU = 'Pile Journal', RUS = 'Журнал работ';
+    CaptionML = ENU = 'JobJournalLineArchive', RUS = 'Журнал работ (Архив)';
 
     fields
     {
-        field(1; LineNo; Integer)
+        field(1; EntryNo; Integer)
         {
             DataClassification = ToBeClassified;
-            CaptionML = ENU = 'Line No.', RUS = 'Строка Но.';
+            CaptionML = ENU = 'Entry No.', RUS = 'Номер операции';
 
         }
 
@@ -92,7 +92,7 @@ table 50008 JobJournalLine
 
     keys
     {
-        key(Key1; LineNo)
+        key(Key1; EntryNo)
         {
             Clustered = true;
         }

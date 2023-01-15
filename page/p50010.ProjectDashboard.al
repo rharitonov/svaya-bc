@@ -63,7 +63,7 @@ page 50010 ProjectDashboard
         OrderKey: Integer;
     begin
         //ProjectCodeFilter := Rec.GetFilter(ProjectCode);
-        ProjectCodeFilter := 'TEST01';
+        ProjectCodeFilter := 'КОД-1';
         ProjectStructure.SetRange(ProjectCode, ProjectCodeFilter);
 
         Rec.Init();

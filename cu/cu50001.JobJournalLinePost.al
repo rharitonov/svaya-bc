@@ -4,6 +4,7 @@ codeunit 50001 JobJournalLinePost
 
     trigger OnRun()
     begin
+        //DeleteJobLedgerEntry();
         Post(Rec);
     end;
 
@@ -24,6 +25,7 @@ codeunit 50001 JobJournalLinePost
                     for PileNo := 1 to JobJournalLine.Quantity do begin
                         JobJournalLine.Quantity := 1;
                         CreatejobLedgerEntry(JobJournalLine);
+                        ArchiveJobJournalLine(JobJournalLine);
                     end
             end else begin
                 if JobJournalLine.PileFieldPositionFrom <> 0 then
@@ -60,5 +62,30 @@ codeunit 50001 JobJournalLinePost
         JobLedgerEntry.EntryNo := NewEntryNo;
         JobLedgerEntry.Insert(true);
     end;
+
+    local procedure ArchiveJobJournalLine(var JobJournalLine: Record JobJournalLine)
+    var
+        JobJnlLineArchive: Record JobJournalLineArchive;
+        NewEntryNo: Integer;
+    begin
+        JobJnlLineArchive.Reset();
+        if JobJnlLineArchive.FindLast() then
+            NewEntryNo := JobJnlLineArchive.EntryNo + 1
+        else
+            NewEntryNo += 1;
+        JobJnlLineArchive.TransferFields(JobJournalLine, false);
+        JobJnlLineArchive.EntryNo := NewEntryNo;
+        JobJnlLineArchive.Insert(true);
+    end;
+
+    local procedure DeleteJobLedgerEntry()
+    var
+        JobLedgerEntry: Record JobLedgerEntry;
+        NewEntryNo: Integer;
+    begin
+        JobLedgerEntry.SetFilter(EntryNo, '..10');
+        JobLedgerEntry.DeleteAll();
+    end;
+
 
 }

@@ -18,6 +18,12 @@ page 50001 Projects
                     ApplicationArea = All;
 
                 }
+
+                field(Name; Rec.name)
+                {
+                    ApplicationArea = All;
+                }
+
                 field(Address; Rec.Address)
                 {
                     ApplicationArea = All;

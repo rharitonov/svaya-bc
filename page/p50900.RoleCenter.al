@@ -21,8 +21,10 @@ page 50900 SvayaRoleCenter
                 RunObject = Page Projects;
             }
         }
+        /*
         area(Sections)
         {
+            
             group(SectionsGroupName)
             {
                 action(SectionsAction)
@@ -30,6 +32,7 @@ page 50900 SvayaRoleCenter
                     //RunObject = Page ObjectName;
                 }
             }
+            
         }
         area(Embedding)
         {
@@ -38,6 +41,7 @@ page 50900 SvayaRoleCenter
                 //RunObject = Page ObjectName;
             }
         }
+        */
     }
 
 }
