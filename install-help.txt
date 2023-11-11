@@ -1,0 +1,16 @@
+stroy-svaya
+1) restore database..
+	- BC-OTS-DEV-APP-D01.bak 
+	- BC-OTS-DEV-D01.bak
+2) run script ~install-stroy-svaya.ps1 excluding # Add users (NavPassword)
+	-url: http://localhost:8080/svaya/
+3) create new Company: stroy-svaya. Open page Companies
+4) pull stroy-svaya-bc repo. configure vscode project and publish the app
+5) create a new NavPassword user
+6) apply 'svaya profile' role in My Settings
+---
+7) add NavPassowrd users
+8) configure server instance using ~install-stroy-svaya.ps1, restart
+9) Configure Business Central Web Server (using iis manager):
+	Config file: C:\inetpub\wwwroot\svaya\navsettings.json 
+	Set the ClientServicesCredentialType key value to NavUserPassword.
