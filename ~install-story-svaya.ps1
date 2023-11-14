@@ -6,6 +6,7 @@ Import-Module "C:\Program Files\Microsoft Dynamics 365 Business Central\200\Serv
 #####
 
 $server_instance = "svaya"
+$webserver_instance = "svaya"
 $port_prefix = "77"
 
 $management_services_port = $port_prefix+"45"
@@ -64,6 +65,7 @@ Restart-NAVServerInstance -ServerInstance $server_instance
 Mount-NAVTenant -ServerInstance $server_instance -Tenant $tenant_name -DatabaseServer $sql_server -DatabaseName $tenant_db -EnvironmentType Production -AllowAppDatabaseWrite -OverwriteTenantIdInDatabase 
 Get-NAVTenant -ServerInstance $server_instance |Format-Table Id, DatabaseName, State
 
+Restart-NAVServerInstance -ServerInstance $server_instance
 
 # Add User
 #####
@@ -89,3 +91,48 @@ Deploy-ToTenantEnvironment `
     -sync_mode $sync_mode `
     -exclusiveAccess $exclusiveAccess
 
+
+
+
+## add new NavUserPassword user
+$new_user = 'devuser1'
+$pwd = ConvertTo-SecureString "P@$$W0rD!" -AsPlainText -Force
+
+New-NAVServerUser -ServerInstance $server_instance -Tenant $tenant_name -UserName $new_user -Password $pwd
+New-NAVServerUserPermissionSet -PermissionSetId SUPER -ServerInstance $server_instance -Tenant $tenant_name -UserName $new_user
+
+##   NAVUSERPASSWORD
+# https://www.sauravdhyani.com/2023/05/how-to-set-up-navuserpassword.html
+##
+#Set the ClientServicesCredentialType to NavUserPassword.
+Set-NAVServerConfiguration -ServerInstance $server_instance -KeyName ClientServicesCredentialType -KeyValue NavUserPassword
+Restart-NAVServerInstance -ServerInstance $server_instance
+
+##Configure Business Central Web Server components
+#edit C:\inetpub\wwwroot\svaya\navsettings.json
+
+## To NavUserPassword ClientServicesCredentialType
+Set-NAVServerConfiguration -ServerInstance $server_instance -KeyName ClientServicesCredentialType -KeyValue NavUserPassword
+Restart-NAVServerInstance -ServerInstance $server_instance
+Set-NAVWebServerInstanceConfiguration -KeyName ClientServicesCredentialType -KeyValue NavUserPassword -WebServerInstance $webserver_instance
+
+## To Windows ClientServicesCredentialType
+$webserver_instance = "svaya"
+Set-NAVServerConfiguration -ServerInstance $server_instance -KeyName ClientServicesCredentialType -KeyValue Windows
+Restart-NAVServerInstance -ServerInstance $server_instance
+Set-NAVWebServerInstanceConfiguration -WebServerInstance $webserver_instance -KeyName ClientServicesCredentialType -KeyValue Windows
+
+
+
+## cert
+##
+# https://www.sauravdhyani.com/2023/05/how-do-i-configure-navuserpassword-with.html
+##
+$thumbprint = "d81349f5575aae1f26679fd2b25613ff97987e14"
+$webserver_instance = "BC200"
+$dns_name = "stroy-svaya-vm"
+Set-NAVServerConfiguration -ServerInstance $server_instance -KeyName ServicesCertificateThumbprint -KeyValue $thumbprint
+
+Set-NAVWebServerInstanceConfiguration -WebServerInstance $webserver_inctance -KeyName DnsIdentity -KeyValue $dns_name
+Set-NAVWebServerInstanceConfiguration -WebServerInstance $webserver_inctance -KeyName RequireSsl -KeyValue true
+Set-NAVWebServerInstanceConfiguration -WebServerInstance $webserver_inctance -KeyName ServerHttps -KeyValue true
