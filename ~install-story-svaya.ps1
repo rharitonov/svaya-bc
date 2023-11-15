@@ -114,7 +114,7 @@ Restart-NAVServerInstance -ServerInstance $server_instance
 ## To NavUserPassword ClientServicesCredentialType
 Set-NAVServerConfiguration -ServerInstance $server_instance -KeyName ClientServicesCredentialType -KeyValue NavUserPassword
 Restart-NAVServerInstance -ServerInstance $server_instance
-Set-NAVWebServerInstanceConfiguration -KeyName ClientServicesCredentialType -KeyValue NavUserPassword -WebServerInstance $webserver_instance
+Set-NAVWebServerInstanceConfiguration -WebServerInstance $webserver_instance -KeyName ClientServicesCredentialType -KeyValue NavUserPassword 
 
 ## To Windows ClientServicesCredentialType
 $webserver_instance = "svaya"
