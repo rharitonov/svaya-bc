@@ -13,12 +13,13 @@ page 50002 Project
             group(General)
             {
                 CaptionML = ENU = 'General', RUS = 'Общее';
+                /*
                 field(ProjectCode; Rec."ProjectCode")
                 {
                     ApplicationArea = All;
 
                 }
-
+                */
                 field(Address; Rec.Address)
                 {
                     ApplicationArea = All;
@@ -33,9 +34,10 @@ page 50002 Project
                     CaptionML = ENU = 'Job Progress', RUS = 'Выполнение';
                     ApplicationArea = All;
                     SubPageLink = ProjectCode = field(ProjectCode);
+
                 }
             }
-
+            /*
             group(Responsobilities)
             {
                 CaptionML = ENU = 'Responsobilities', RUS = 'Отвественные лица и организации';
@@ -48,14 +50,15 @@ page 50002 Project
                     ApplicationArea = All;
                 }
             }
+            */
         }
     }
+
 
     actions
     {
         area(Processing)
         {
-            /*
             action(CreatePileField)
             {
                 ApplicationArea = All;
@@ -63,7 +66,7 @@ page 50002 Project
                 RunObject = page CreatePileFieldMaster;
                 RunPageLink = ProjectCode = field(ProjectCode);
             }
-            */
+
             action(AddJob)
             {
                 ApplicationArea = All;
@@ -104,4 +107,9 @@ page 50002 Project
 
     }
 
+
+    trigger OnOpenPage()
+    begin
+        CurrPage.DashBoard.Page.SetProject(Rec.ProjectCode);
+    end;
 }

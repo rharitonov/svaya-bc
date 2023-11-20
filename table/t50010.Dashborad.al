@@ -67,7 +67,7 @@ table 50010 Dashboard
 
     keys
     {
-        key(Key1; OrderKey)
+        key(Key1; ProjectCode, OrderKey)
         {
             Clustered = true;
         }

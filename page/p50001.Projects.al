@@ -13,6 +13,7 @@ page 50001 Projects
         {
             repeater(GroupName)
             {
+
                 field(ProjectCode; Rec."ProjectCode")
                 {
                     ApplicationArea = All;

@@ -7,7 +7,6 @@ page 50900 SvayaRoleCenter
     {
         area(RoleCenter)
         {
-
         }
     }
 
@@ -24,7 +23,7 @@ page 50900 SvayaRoleCenter
         /*
         area(Sections)
         {
-            
+
             group(SectionsGroupName)
             {
                 action(SectionsAction)
@@ -32,7 +31,7 @@ page 50900 SvayaRoleCenter
                     //RunObject = Page ObjectName;
                 }
             }
-            
+
         }
         area(Embedding)
         {

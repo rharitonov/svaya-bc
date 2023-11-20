@@ -58,17 +58,14 @@ page 50010 ProjectDashboard
 
     trigger OnOpenPage()
     var
-        ProjectCodeFilter: Text;
         ProjectStructure: Record ProjectStructure;
         OrderKey: Integer;
     begin
-        //ProjectCodeFilter := Rec.GetFilter(ProjectCode);
-        ProjectCodeFilter := 'КОД-1';
-        ProjectStructure.SetRange(ProjectCode, ProjectCodeFilter);
+        ProjectStructure.SetRange(ProjectCode, gProjectCodeFilter);
 
         Rec.Init();
         Rec.OrderKey := 1;
-        Rec.ProjectCode := ProjectCodeFilter;
+        Rec.ProjectCode := gProjectCodeFilter;
         Rec.JobType := Rec.JobType::QACertificatePosting;
         Rec.Description := Format(Rec.JobType);
         Rec.Insert(true);
@@ -82,7 +79,7 @@ page 50010 ProjectDashboard
 
         Rec.Init();
         Rec.OrderKey += 1;
-        Rec.ProjectCode := ProjectCodeFilter;
+        Rec.ProjectCode := gProjectCodeFilter;
         Rec.JobType := Rec.JobType::PileFieldAcceptance;
         Rec.Description := Format(Rec.JobType);
         Rec.Insert(true);
@@ -96,7 +93,7 @@ page 50010 ProjectDashboard
 
         Rec.Init();
         Rec.OrderKey += 1;
-        Rec.ProjectCode := ProjectCodeFilter;
+        Rec.ProjectCode := gProjectCodeFilter;
         Rec.JobType := Rec.JobType::PileAcceptance;
         Rec.Description := Format(Rec.JobType);
         Rec.Insert(true);
@@ -110,7 +107,7 @@ page 50010 ProjectDashboard
 
         Rec.Init();
         Rec.OrderKey += 1;
-        Rec.ProjectCode := ProjectCodeFilter;
+        Rec.ProjectCode := gProjectCodeFilter;
         Rec.JobType := Rec.JobType::PileWorks;
         Rec.Description := Format(Rec.JobType);
         Rec.Insert(true);
@@ -136,4 +133,10 @@ page 50010 ProjectDashboard
 
     var
         IndentVal: Integer;
+        gProjectCodeFilter: Code[20];
+
+    procedure SetProject(pNewPorjectCode: Code[20])
+    begin
+        gProjectCodeFilter := pNewPorjectCode;
+    end;
 }
