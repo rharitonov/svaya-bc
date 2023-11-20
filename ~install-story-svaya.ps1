@@ -1,6 +1,6 @@
 ﻿#Modules
 Import-Module "C:\Program Files\Microsoft Dynamics 365 Business Central\200\Service\NavAdminTool.ps1" |Out-Null
-."C:\src\OTS-BC\scripts\common_functions.ps1"
+##."C:\src\OTS-BC\scripts\common_functions.ps1"
 
 # Variables
 #####
@@ -46,9 +46,10 @@ Start-NAVServerInstance -ServerInstance $server_instance
 
 
 #Add Web service instance
+##Remove-NAVWebServerInstance -WebServerInstance $webserver_instance
 New-NAVWebServerInstance -Server localhost `
     -ServerInstance $server_instance `
-    -WebServerInstance $server_instance `
+    -WebServerInstance $webserver_instance `
     -AddFirewallException `
     -ClientServicesCredentialType Windows `
     -ClientServicesPort $client_services_port `
