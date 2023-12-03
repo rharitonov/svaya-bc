@@ -20,19 +20,23 @@ page 50900 SvayaRoleCenter
                 RunObject = Page Projects;
             }
         }
-        /*
+
         area(Sections)
         {
 
-            group(SectionsGroupName)
+            group("Group1")
             {
+                CaptionML = RUS = 'Настройки';
                 action(SectionsAction)
                 {
-                    //RunObject = Page ObjectName;
+                    ApplicationArea = all;
+                    CaptionML = RUS = 'Техника';
+                    RunObject = page EquipmentList;
                 }
             }
 
         }
+        /*
         area(Embedding)
         {
             action(EmbeddingAction)
